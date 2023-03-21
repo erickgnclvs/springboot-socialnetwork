@@ -1,2 +1,1 @@
-# Spring Boot Social Networking Web Application
-
+## a spring boot social network app
