@@ -25,5 +25,10 @@ public class UserController {
     public void createUser(@RequestBody User user) { userService.createUser(user); }
 
     @DeleteMapping(path = "/{id}")
-    public void deleteUser(@PathVariable(value = "id") Long id) { userService.deleteUser(id); }
+    public void deleteUser(@PathVariable("id") Long id) { userService.deleteUser(id); }
+
+    @PutMapping(path = "/{id}/password")
+    public void updatePassword(@PathVariable("id") Long id, @RequestBody String password) {
+        userService.updatePassword(id, password);
+    }
 }

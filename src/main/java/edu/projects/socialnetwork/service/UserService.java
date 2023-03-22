@@ -2,6 +2,7 @@ package edu.projects.socialnetwork.service;
 
 import edu.projects.socialnetwork.model.User;
 import edu.projects.socialnetwork.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,13 @@ public class UserService {
     }
 
     public void deleteUser(Long id) {
-        if (!userRepository.findById(id).isPresent()) throw new IllegalStateException("user id is not in the database");
+        if (!userRepository.existsById(id)) throw new IllegalStateException("user id is not in the database");
         userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updatePassword(Long id, String password) {
+        if (!userRepository.existsById(id)) throw new IllegalStateException("user id is not in the database");
+        userRepository.getById(id).setPasswordHash(password);
     }
 }
