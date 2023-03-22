@@ -22,8 +22,11 @@ public class UserController {
     @GetMapping()
     public List<User> getUsers() { return userService.getUsers(); }
 
-    @GetMapping(path = "/{id}")
-    public User getUserById(@PathVariable("id") Long id) { return userService.getUserById(id);}
+    @GetMapping(path = "/profile/{id}")
+    public User getUserById(@PathVariable("id") Long id) { return userService.getUserById(id); }
+
+    @GetMapping(path = "/{username}")
+    public User getUserByUsername(@PathVariable("username") String username) { return userService.getUserByUsername(username); }
 
     @PostMapping()
     public void createUser(@RequestBody User user) { userService.createUser(user); }

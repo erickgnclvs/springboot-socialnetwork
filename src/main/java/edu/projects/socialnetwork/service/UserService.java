@@ -41,6 +41,14 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        return userRepository.findById(id).get();
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) throw new IllegalArgumentException("id is not registered");
+        return user.get();
+    }
+
+    public User getUserByUsername(String username) {
+        Optional<User> user = userRepository.findUserByUsername(username);
+        if (user.isEmpty()) throw new IllegalArgumentException("username is not registered");
+        return user.get();
     }
 }
