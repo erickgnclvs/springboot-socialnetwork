@@ -1,5 +1,6 @@
 package edu.projects.socialnetwork.controller;
 
+import edu.projects.socialnetwork.model.RequestPassword;
 import edu.projects.socialnetwork.model.User;
 import edu.projects.socialnetwork.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class UserController {
     public void deleteUser(@PathVariable("id") Long id) { userService.deleteUser(id); }
 
     @PutMapping(path = "/{id}/password")
-    public void updatePassword(@PathVariable("id") Long id, @RequestBody String password) {
-        userService.updatePassword(id, password);
+    public void updatePassword(@PathVariable("id") Long id, @RequestBody RequestPassword requestPassword) {
+        userService.updatePassword(id, requestPassword.password());
     }
 }
