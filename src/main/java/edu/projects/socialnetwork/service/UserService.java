@@ -1,6 +1,8 @@
 package edu.projects.socialnetwork.service;
 
 import edu.projects.socialnetwork.model.User;
+import edu.projects.socialnetwork.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,11 +10,18 @@ import java.util.List;
 @Service
 public class UserService {
 
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<User> getUsers() {
-        User user1 = new User("erickusername", "passhash", "erick", "erick@mail.io", "im a bio");
-        User user2 = new User("natiusername", "passhash", "nati", "nati@mail.io", "im a bio");
+        return userRepository.findAll();
+    }
 
-        return List.of(user1, user2);
+    public void createUser(User user) {
+        System.out.println(user);
     }
 }

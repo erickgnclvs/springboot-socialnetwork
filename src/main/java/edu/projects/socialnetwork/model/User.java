@@ -9,22 +9,15 @@ import java.util.Objects;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @Column(unique = true, nullable = false, length = 20)
     private String username;
-
-    @Column(nullable = false, name = "password_hash")
-    private String passwordHash;
-
-    @Column(length = 100)
-    private String name;
-
     @Column(unique = true, nullable = false)
     private String email;
-
-    @Column
+    @Column(nullable = false)
+    private String passwordHash;
+    private String name;
     private String biography;
 
     public User(String username, String passwordHash, String name, String email, String biography) {
