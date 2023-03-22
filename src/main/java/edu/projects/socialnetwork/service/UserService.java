@@ -39,4 +39,8 @@ public class UserService {
         if (!userRepository.existsById(id)) throw new IllegalStateException("user id is not in the database");
         userRepository.getById(id).setPasswordHash(password);
     }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).get();
+    }
 }
