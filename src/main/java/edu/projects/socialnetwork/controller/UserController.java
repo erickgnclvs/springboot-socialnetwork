@@ -24,4 +24,6 @@ public class UserController {
     @PostMapping()
     public void createUser(@RequestBody User user) { userService.createUser(user); }
 
+    @DeleteMapping(path = "/{id}")
+    public void deleteUser(@PathVariable(value = "id") Long id) { userService.deleteUser(id); }
 }
