@@ -1,11 +1,11 @@
-package edu.projects.socialnetwork;
+package edu.projects.socialnetwork.model;
 
 import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -20,8 +20,10 @@ public class User {
 
     @Column(length = 100)
     private String name;
-    @Column
+
+    @Column(unique = true, nullable = false)
     private String email;
+
     @Column
     private String biography;
 
