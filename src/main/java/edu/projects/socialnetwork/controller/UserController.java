@@ -38,4 +38,8 @@ public class UserController {
     public void updatePassword(@PathVariable("id") Long id, @RequestBody RequestPassword requestPassword) {
         userService.updatePassword(id, requestPassword.password());
     }
+
+    /** TODO
+     *  write update name, update usarname, update email, update biography
+     */
 }

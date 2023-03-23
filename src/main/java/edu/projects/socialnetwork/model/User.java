@@ -2,6 +2,7 @@ package edu.projects.socialnetwork.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +20,8 @@ public class User {
     private String passwordHash;
     private String name;
     private String biography;
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
     public User(String username, String passwordHash, String name, String email, String biography) {
         this.username = username;
