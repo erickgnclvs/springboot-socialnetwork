@@ -67,4 +67,12 @@ public class UserService {
         if (user.get().getUsername().equals(newUsername)) throw new IllegalStateException("the username is the same as before");
         user.get().setUsername(newUsername);
     }
+
+    @Transactional
+    public void updateEmail(Long id, String email) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) throw new IllegalStateException("user doesnt exist in this id");
+        if (user.get().getEmail().equals(email)) throw new IllegalStateException("the email is the same as before");
+        user.get().setEmail(email);
+    }
 }
