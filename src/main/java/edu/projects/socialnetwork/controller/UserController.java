@@ -59,7 +59,10 @@ public class UserController {
         userService.updateBiography(id, requestBiography.biography());
     }
 
-
+    @PutMapping("/{id}/deactivate")
+    public void deactivateUser(@PathVariable Long id) {
+        userService.deactivateUser(id);
+    }
 
 
 

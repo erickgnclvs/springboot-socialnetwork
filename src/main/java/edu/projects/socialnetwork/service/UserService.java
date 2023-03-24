@@ -83,4 +83,12 @@ public class UserService {
         if (user.get().getBiography().equals(biography)) throw new IllegalStateException("the biography is the same as before");
         user.get().setBiography(biography);
     }
+
+    @Transactional
+    public void deactivateUser(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) throw new IllegalStateException("user doesnt exist in this id");
+        if (!user.get().isActive()) throw new IllegalStateException("the user is already inactive");
+        user.get().setActive(false);
+    }
 }
