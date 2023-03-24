@@ -2,6 +2,7 @@ package edu.projects.socialnetwork.controller;
 
 import edu.projects.socialnetwork.model.RequestName;
 import edu.projects.socialnetwork.model.RequestPassword;
+import edu.projects.socialnetwork.model.RequestUsername;
 import edu.projects.socialnetwork.model.User;
 import edu.projects.socialnetwork.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,11 @@ public class UserController {
     @PutMapping("/{id}/name")
     public void updateName(@PathVariable Long id, @RequestBody RequestName requestName) {
         userService.updateName(id, requestName.name());
+    }
+
+    @PutMapping("/{id}/username")
+    public void updateUsername(@PathVariable Long id, @RequestBody RequestUsername requestUsername) {
+        userService.updateUsername(id, requestUsername.username());
     }
 
     /* TODO:

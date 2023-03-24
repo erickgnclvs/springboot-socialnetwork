@@ -55,8 +55,16 @@ public class UserService {
     @Transactional
     public void updateName(Long id, String name) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()) throw new IllegalStateException("user doesnt exist in this login");
+        if (user.isEmpty()) throw new IllegalStateException("user doesnt exist in this id");
         if (user.get().getName().equals(name)) throw new IllegalStateException("the name is the same as before");
         user.get().setName(name);
+    }
+
+    @Transactional
+    public void updateUsername(Long id, String newUsername) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) throw new IllegalStateException("user doesnt exist in this id");
+        if (user.get().getUsername().equals(newUsername)) throw new IllegalStateException("the username is the same as before");
+        user.get().setUsername(newUsername);
     }
 }
