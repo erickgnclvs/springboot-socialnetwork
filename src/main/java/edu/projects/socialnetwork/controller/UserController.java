@@ -1,5 +1,6 @@
 package edu.projects.socialnetwork.controller;
 
+import edu.projects.socialnetwork.model.RequestName;
 import edu.projects.socialnetwork.model.RequestPassword;
 import edu.projects.socialnetwork.model.User;
 import edu.projects.socialnetwork.service.UserService;
@@ -22,21 +23,26 @@ public class UserController {
     @GetMapping()
     public List<User> getUsers() { return userService.getUsers(); }
 
-    @GetMapping(path = "/profile/{id}")
+    @GetMapping("/profile/{id}")
     public User getUserById(@PathVariable("id") Long id) { return userService.getUserById(id); }
 
-    @GetMapping(path = "/{username}")
+    @GetMapping("/{username}")
     public User getUserByUsername(@PathVariable("username") String username) { return userService.getUserByUsername(username); }
 
     @PostMapping()
     public void createUser(@RequestBody User user) { userService.createUser(user); }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable("id") Long id) { userService.deleteUser(id); }
 
-    @PutMapping(path = "/{id}/password")
+    @PutMapping("/{id}/password")
     public void updatePassword(@PathVariable("id") Long id, @RequestBody RequestPassword requestPassword) {
         userService.updatePassword(id, requestPassword.password());
+    }
+
+    @PutMapping("/{id}/name")
+    public void updateName(@PathVariable Long id, @RequestBody RequestName requestName) {
+        userService.updateName(id, requestName.name());
     }
 
     /* TODO:
@@ -45,5 +51,8 @@ public class UserController {
      *  update usarname
      *  update email
      *  update biography
+     *  improve methods
+     *  write some checkings before taking the actions
+     *  write proper error handler with message
      */
 }

@@ -51,4 +51,12 @@ public class UserService {
         if (user.isEmpty()) throw new IllegalArgumentException("username is not registered");
         return user.get();
     }
+
+    @Transactional
+    public void updateName(Long id, String name) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) throw new IllegalStateException("user doesnt exist in this login");
+        if (user.get().getName().equals(name)) throw new IllegalStateException("the name is the same as before");
+        user.get().setName(name);
+    }
 }

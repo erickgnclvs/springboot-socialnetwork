@@ -49,10 +49,9 @@ public class PostController {
     }
 
     /* TODO:
-     *  write methods to:
-     *  create post
-     *  update post
-     *  delete post
+     *  improve methods
+     *  write some checkings before taking the actions
+     *  write proper error handler with message
      */
 
 }
