@@ -64,6 +64,10 @@ public class UserController {
         userService.deactivateUser(id);
     }
 
+    @PutMapping("/{id}/activate")
+    public void activateUser(@PathVariable Long id) {
+        userService.activateUser(id);
+    }
 
 
     /* TODO:

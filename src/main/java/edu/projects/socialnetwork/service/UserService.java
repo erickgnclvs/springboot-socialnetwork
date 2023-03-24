@@ -91,4 +91,12 @@ public class UserService {
         if (!user.get().isActive()) throw new IllegalStateException("the user is already inactive");
         user.get().setActive(false);
     }
+
+    @Transactional
+    public void activateUser(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) throw new IllegalStateException("user doesnt exist in this id");
+        if (user.get().isActive()) throw new IllegalStateException("the user is already active");
+        user.get().setActive(true);
+    }
 }
