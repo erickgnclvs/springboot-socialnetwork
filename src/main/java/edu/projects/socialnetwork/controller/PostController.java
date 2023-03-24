@@ -27,10 +27,18 @@ public class PostController {
         return postService.getPosts();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/post/{id}")
     public Post getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
+
+    @GetMapping("/{username}")
+    public List<Post> getPostsByUsername(@PathVariable String username) {
+        return postService.getPostsByUsername(username);
+    }
+
+
+
 
     /** TODO
      *  write methods to:

@@ -40,6 +40,10 @@ public class UserController {
     }
 
     /** TODO
-     *  write update name, update usarname, update email, update biography
+     *  write methods that:
+     *  update name
+     *  update usarname
+     *  update email
+     *  update biography
      */
 }

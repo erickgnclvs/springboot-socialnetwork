@@ -13,11 +13,12 @@ import java.util.Optional;
 public class PostService {
 
     private final PostRepository postRepository;
-
+    private final UserService userService;
 
     @Autowired
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
+        this.userService = userService;
     }
 
 
@@ -29,5 +30,12 @@ public class PostService {
         Optional<Post> post = postRepository.findById(id);
         if (post.isEmpty()) throw new IllegalArgumentException("post doesn't exist");
         return post.get();
+    }
+
+    public List<Post> getPostsByUsername(String username) {
+        User user = userService.getUserByUsername(username);
+        Optional<List<Post>> list = postRepository.findAllByUser(user);
+        if (list.isEmpty()) throw new IllegalStateException("no posts for this user");
+        return list.get();
     }
 }
