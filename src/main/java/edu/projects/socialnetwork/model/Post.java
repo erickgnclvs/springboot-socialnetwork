@@ -1,8 +1,10 @@
 package edu.projects.socialnetwork.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -16,6 +18,9 @@ public class Post {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Like> likes;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -41,11 +46,6 @@ public class Post {
         this.content = content;
         this.user = user;
     }
-//    @OneToMany(mappedBy = "posts")
-//    private List<Comment> comments;
-
-//    @OneToMany(mappedBy = "post")
-//    private List<Like> likes;
 
 
     public Long getId() {
@@ -78,5 +78,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Like> likes) {
+        this.likes = likes;
     }
 }
