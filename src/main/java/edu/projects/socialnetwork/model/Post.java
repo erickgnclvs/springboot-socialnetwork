@@ -40,7 +40,7 @@ public class Post {
 //    @OneToMany(mappedBy = "posts")
 //    private List<Comment> comments;
 
-//    @OneToMany(mappedBy = "posts")
+//    @OneToMany(mappedBy = "post")
 //    private List<Like> likes;
 
 

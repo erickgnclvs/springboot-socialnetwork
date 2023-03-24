@@ -4,6 +4,7 @@ import edu.projects.socialnetwork.model.Post;
 import edu.projects.socialnetwork.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,17 @@ public class PostController {
         return postService.getPosts();
     }
 
+    @GetMapping("/{id}")
+    public Post getPostById(@PathVariable Long id) {
+        return postService.getPostById(id);
+    }
+
+    /** TODO
+     *  write methods to:
+     *  get posts from x user
+     *  create post
+     *  update post
+     *  delete post
+     */
 
 }
