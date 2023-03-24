@@ -1,0 +1,6 @@
+#FileLock
+#Fri Mar 24 00:11:16 BRT 2023
+hostName=Acer.bbrouter
+id=18711995bfde1f619505a79b25b9e9e80e24774954e
+method=file
+server=192.168.0.41\:52021
