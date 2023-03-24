@@ -37,6 +37,10 @@ public class Post {
         this.user = user;
     }
 
+    public Post(String content, User user) {
+        this.content = content;
+        this.user = user;
+    }
 //    @OneToMany(mappedBy = "posts")
 //    private List<Comment> comments;
 

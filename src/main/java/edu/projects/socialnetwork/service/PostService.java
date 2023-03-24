@@ -3,6 +3,7 @@ package edu.projects.socialnetwork.service;
 import edu.projects.socialnetwork.model.Post;
 import edu.projects.socialnetwork.model.User;
 import edu.projects.socialnetwork.repository.PostRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,14 @@ public class PostService {
 
     public void createPost(Post post) {
         postRepository.save(post);
+    }
+
+    @Transactional
+    public void updatePost(Long id, Post post) {
+        Optional<Post> optionalPost = postRepository.findById(id);
+        if (optionalPost.isEmpty()) throw new IllegalStateException("post to be update doesnt exist is this id");
+        Post postToBeUpdated = optionalPost.get();
+        postToBeUpdated.setContent(post.getContent());
+        postToBeUpdated.setCreatedAt(post.getCreatedAt());
     }
 }
