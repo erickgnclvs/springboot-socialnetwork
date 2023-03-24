@@ -75,4 +75,12 @@ public class UserService {
         if (user.get().getEmail().equals(email)) throw new IllegalStateException("the email is the same as before");
         user.get().setEmail(email);
     }
+
+    @Transactional
+    public void updateBiography(Long id, String biography) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) throw new IllegalStateException("user doesnt exist in this id");
+        if (user.get().getBiography().equals(biography)) throw new IllegalStateException("the biography is the same as before");
+        user.get().setBiography(biography);
+    }
 }
