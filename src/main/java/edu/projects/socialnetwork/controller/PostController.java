@@ -43,8 +43,12 @@ public class PostController {
         postService.updatePost(id, post);
     }
 
+    @DeleteMapping("/post/{id}")
+    public void deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
+    }
 
-    /* TODO
+    /* TODO:
      *  write methods to:
      *  create post
      *  update post

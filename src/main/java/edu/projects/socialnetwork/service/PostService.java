@@ -52,4 +52,8 @@ public class PostService {
         postToBeUpdated.setContent(post.getContent());
         postToBeUpdated.setCreatedAt(post.getCreatedAt());
     }
+
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
+    }
 }

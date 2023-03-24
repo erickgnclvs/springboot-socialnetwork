@@ -39,8 +39,8 @@ public class UserController {
         userService.updatePassword(id, requestPassword.password());
     }
 
-    /* TODO
-     *  write methods that:
+    /* TODO:
+     *  write methods that
      *  update name
      *  update usarname
      *  update email
