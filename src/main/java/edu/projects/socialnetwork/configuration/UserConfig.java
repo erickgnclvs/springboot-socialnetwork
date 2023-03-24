@@ -23,6 +23,7 @@ public class UserConfig {
             User nati = new User("natiusername", "passhash", "nati", "nati@mail.io", "im a bio");
 
             userRepository.saveAll(List.of(erick, nati));
+
             Post post1 = new Post("first post", LocalDateTime.now(), erick);
             postRepository.save(post1);
         };

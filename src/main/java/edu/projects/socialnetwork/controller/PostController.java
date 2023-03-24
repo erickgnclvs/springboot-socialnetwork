@@ -20,7 +20,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Post> getPosts() {
         // although there is a post saved in the database, this route returns an empty list
         return postService.getPosts();
