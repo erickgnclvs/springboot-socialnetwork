@@ -5,6 +5,12 @@ target/
 !**/src/test/**/target/
 
 ### Database files ###
+testdb.mv.db
+testdb.trace.db
+testdb.lock.db
+*.trace.db
+*.lock.db
+*.mv.db
 *.db
 
 ### STS ###
