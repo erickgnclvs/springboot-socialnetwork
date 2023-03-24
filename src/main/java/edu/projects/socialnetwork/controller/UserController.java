@@ -39,7 +39,7 @@ public class UserController {
         userService.updatePassword(id, requestPassword.password());
     }
 
-    /** TODO
+    /* TODO
      *  write methods that:
      *  update name
      *  update usarname

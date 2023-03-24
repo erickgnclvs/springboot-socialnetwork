@@ -38,4 +38,8 @@ public class PostService {
         if (list.isEmpty()) throw new IllegalStateException("no posts for this user");
         return list.get();
     }
+
+    public void createPost(Post post) {
+        postRepository.save(post);
+    }
 }

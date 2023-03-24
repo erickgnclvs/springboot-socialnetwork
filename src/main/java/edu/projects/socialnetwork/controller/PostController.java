@@ -3,10 +3,7 @@ package edu.projects.socialnetwork.controller;
 import edu.projects.socialnetwork.model.Post;
 import edu.projects.socialnetwork.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +20,6 @@ public class PostController {
 
     @GetMapping()
     public List<Post> getPosts() {
-        // although there is a post saved in the database, this route returns an empty list
         return postService.getPosts();
     }
 
@@ -37,12 +33,16 @@ public class PostController {
         return postService.getPostsByUsername(username);
     }
 
+    @PostMapping("/new")
+    public void createPost(@RequestBody Post post) {
+        postService.createPost(post);
+    }
 
 
 
-    /** TODO
+
+    /* TODO
      *  write methods to:
-     *  get posts from x user
      *  create post
      *  update post
      *  delete post
