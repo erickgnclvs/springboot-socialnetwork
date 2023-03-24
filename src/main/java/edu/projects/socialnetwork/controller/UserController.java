@@ -61,12 +61,10 @@ public class UserController {
 
 
 
+
+
     /* TODO:
      *  write methods that
-     *  update name
-     *  update usarname
-     *  update email
-     *  update biography
      *  improve methods
      *  write some checkings before taking the actions
      *  write proper error handler with message

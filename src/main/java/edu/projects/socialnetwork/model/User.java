@@ -20,6 +20,8 @@ public class User {
     private String passwordHash;
     private String name;
     private String biography;
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private boolean isActive;
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
@@ -29,9 +31,12 @@ public class User {
         this.name = name;
         this.email = email;
         this.biography = biography;
+        this.isActive = true;
     }
 
     public User() {
+        // I dont think this is the best approach. TODO: research best way to let default true
+        this.isActive = true;
     }
 
     @Override
@@ -106,4 +111,20 @@ public class User {
     public void setBiography(String biography) {
         this.biography = biography;
     }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+//    public List<Post> getPosts() {
+//        return posts;
+//    }
+//
+//    public void setPosts(List<Post> posts) {
+//        this.posts = posts;
+//    }
 }
