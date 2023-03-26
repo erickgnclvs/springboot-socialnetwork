@@ -19,6 +19,15 @@ public class Like {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Override
+    public String toString() {
+        return "Like{" +
+                "id=" + id +
+                ", post=" + post +
+                ", user=" + user +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
@@ -48,6 +57,10 @@ public class Like {
     public Like(Long id, Post post, User user) {
         this.id = id;
         this.post = post;
+        this.user = user;
+    }
+
+    public Like(User user) {
         this.user = user;
     }
 
