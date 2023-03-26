@@ -37,4 +37,9 @@ public class LikeController {
     public void likePost(@RequestBody RequestLike requestLike, Like like) {
         likeService.createLike(requestLike, like);
     }
+
+    @PutMapping("/posts/{postId}")
+    public void unlikePost(@RequestBody RequestLike requestLike, Like like) {
+        likeService.removeLike(requestLike, like);
+    }
 }

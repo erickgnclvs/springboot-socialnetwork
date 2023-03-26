@@ -47,6 +47,15 @@ public class Post {
         this.user = user;
     }
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", createdAt=" + createdAt +
+                ", user=" + user +
+                '}';
+    }
 
     public Long getId() {
         return id;

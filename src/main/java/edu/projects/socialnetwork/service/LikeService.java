@@ -31,11 +31,18 @@ public class LikeService {
         return likeRepository.findAllByPost(post);
     }
 
-
     @Transactional
     public void createLike(RequestLike requestLike, Like like) {
         like.setUser(userRepository.getById(requestLike.user_id()));
         like.setPost(postRepository.getById(requestLike.post_id()));
         likeRepository.save(like);
+    }
+
+    @Transactional
+    public void removeLike(RequestLike requestLike, Like like) {
+        like.setUser(userRepository.getById(requestLike.user_id()));
+        like.setPost(postRepository.getById(requestLike.post_id()));
+        like = likeRepository.findByUserAndPost(like.getUser(), like.getPost());
+        likeRepository.delete(like);
     }
 }
