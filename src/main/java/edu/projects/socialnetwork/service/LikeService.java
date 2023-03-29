@@ -45,4 +45,8 @@ public class LikeService {
         like = likeRepository.findByUserAndPost(like.getUser(), like.getPost());
         likeRepository.delete(like);
     }
+
+    public List<Like> getLikesByUserId(Long userId) {
+        return likeRepository.findByUserId(userId);
+    }
 }

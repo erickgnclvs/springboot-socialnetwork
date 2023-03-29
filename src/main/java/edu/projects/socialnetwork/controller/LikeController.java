@@ -42,4 +42,9 @@ public class LikeController {
     public void unlikePost(@RequestBody RequestLike requestLike, Like like) {
         likeService.removeLike(requestLike, like);
     }
+
+    @GetMapping("/users/{userId}")
+    public List<Like> getLikesByUserId(@PathVariable Long userId) {
+        return likeService.getLikesByUserId(userId);
+    }
 }
