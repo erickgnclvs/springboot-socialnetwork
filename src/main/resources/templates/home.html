@@ -1,0 +1,40 @@
+<!-- Head-->
+<div th:insert="layout :: head" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+<!-- Navigation bar -->
+<div th:insert="layout :: navbar"></div>
+
+<!-- Main content area -->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+
+            <!-- New post form -->
+            <form>
+                <div class="form-group">
+                    <label for="postText">New Post</label>
+                    <textarea class="form-control" id="postText" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+
+            <!-- Recent posts -->
+            <div class="mt-3">
+                <h3>Recent Posts</h3>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat condimentum augue, eu finibus leo laoreet ut. </p>
+                        <a href="#" class="card-link">Like</a>
+                        <a href="#" class="card-link">Reply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div th:replace="layout :: sidebar"></div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

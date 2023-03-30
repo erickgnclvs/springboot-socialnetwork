@@ -1,0 +1,45 @@
+<!-- Head-->
+<div th:fragment="head">
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Social Network</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+</div>
+
+
+<!-- Navigation bar -->
+<div th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" xmlns:th="http://www.w3.org/1999/xhtml">
+        <a class="navbar-brand" href="#">Social Network</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Sidebar -->
+<div th:fragment="sidebar" class="col-md-4">
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Trending</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">#Bootstrap</li>
+                <li class="list-group-item">#WebDevelopment</li>
+                <li class="list-group-item">#Coding</li>
+                <li class="list-group-item">#JavaScript</li>
+                <li class="list-group-item">#HTML</li>
+            </ul>
+        </div>
+    </div>
+</div>
