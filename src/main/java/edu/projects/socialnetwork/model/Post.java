@@ -81,6 +81,7 @@ public class Post {
         this.createdAt = createdAt;
     }
 
+    @JsonIgnore
     public User getUser() {
         return user;
     }

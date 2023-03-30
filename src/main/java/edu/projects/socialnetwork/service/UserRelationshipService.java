@@ -38,4 +38,11 @@ public class UserRelationshipService {
         userRelationship.setFollower(follower);
         userRelationshipRepository.save(userRelationship);
     }
+
+    public void unfollowUser(String username, Long followerId, UserRelationship userRelationship) {
+        User followee = userRepository.findUserByUsername(username).orElseThrow();
+        User follower = userRepository.findById(followerId).orElseThrow();
+        UserRelationship usrToDelete = userRelationshipRepository.findByFolloweeAndFollower(followee, follower);
+        userRelationshipRepository.delete(usrToDelete);
+    }
 }

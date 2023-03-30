@@ -148,7 +148,6 @@ public class User {
         isActive = active;
     }
 
-    @JsonIgnore
     public List<Post> getPosts() {
         return posts;
     }
@@ -157,7 +156,6 @@ public class User {
         this.posts = posts;
     }
 
-    @JsonIgnore
     public List<Like> getLikes() {
         return likes;
     }

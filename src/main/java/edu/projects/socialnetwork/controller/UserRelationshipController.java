@@ -37,4 +37,9 @@ public class UserRelationshipController {
         userRelationshipService.followUser(username, requestFollow.follower_id(), userRelationship);
     }
 
+    @DeleteMapping("/{username}/unfollow")
+    public void unfollowUser(@PathVariable String username, @RequestBody RequestFollow requestFollow, UserRelationship userRelationship) {
+        userRelationshipService.unfollowUser(username, requestFollow.follower_id(), userRelationship);
+    }
+
 }

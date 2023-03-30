@@ -11,4 +11,6 @@ public interface UserRelationshipRepository extends JpaRepository<UserRelationsh
     List<UserRelationship> findAllByFollowee(User user);
 
     List<UserRelationship> findAllByFollower(User user);
+
+    UserRelationship findByFolloweeAndFollower(User followee, User follower);
 }
