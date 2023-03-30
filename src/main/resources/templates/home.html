@@ -26,13 +26,14 @@
                 <div th:each="post : ${posts}" class="card mt-3">
                     <div class="card-body">
                         <p th:text="${post.content}" class="card-text"></p>
-                        <form id="like-form" name="like-form" enctype="application/json" th:action="@{/likes/posts/{postId}(postId=${post.id})}" th:method="post">
+                        <form name="like-form" enctype="application/json" th:action="@{/likes/posts/{postId}(postId=${post.id})}" th:method="post">
 
                             <!-- TODO: change the user_id value to session.user_id -->
 
-                            <input type="hidden" name="user_id" value="103">
+                            <input type="hidden" name="user_id" value="152">
                             <input type="hidden" name="post_id" th:value="${post.id}">
                             <button onclick="submitForm(event, this.form)" type="submit" class="card-link btn btn-link">Like</button>
+                            <p th:id="'like-count-' + ${post.id}" th:text="${#lists.size(post.likes)}"/>
                         </form>
                     </div>
                 </div>
@@ -47,30 +48,29 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script>
-function submitForm(event, form) {
-    event.preventDefault(); // Prevent form from submitting normally
+<script th:inline="javascript">
+    function submitForm(event, form) {
+    event.preventDefault(); // prevent default form submission behavior
+
     const data = {
         post_id: form.querySelector('input[name="post_id"]').value,
-        user_id: form.querySelector('input[name="user_id"]').value
+        user_id: form.querySelector('input[name="user_id"]').value,
     };
-    const url = form.getAttribute('action');
-    fetch(url, {
-        method: 'POST',
+
+    // make AJAX request to the server
+    fetch(form.action, {
+        method: form.method,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     })
     .then(response => {
         if (response.ok) {
-            // Success!
-        } else {
-            // Handle error
+            // update like count in the DOM
+
         }
     })
-    .catch(error => {
-        // Handle error
-    });
+    .catch(error => console.error(error));
 }
 </script>
