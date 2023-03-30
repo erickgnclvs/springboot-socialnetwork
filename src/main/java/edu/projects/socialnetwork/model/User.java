@@ -1,6 +1,7 @@
 package edu.projects.socialnetwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,20 +14,44 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(unique = true, nullable = false, length = 20)
     private String username;
+
     @Column(unique = true, nullable = false)
     private String email;
+
     @Column(nullable = false)
     private String passwordHash;
+
     private String name;
+
     private String biography;
+
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean isActive;
+
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Like> likes;
+
+    @OneToMany(mappedBy = "follower")
+    private List<UserRelationship> following;
+
+    @OneToMany(mappedBy = "followee")
+    private List<UserRelationship> followers;
+
+
+    public List<UserRelationship> getFollowing() {
+        return following;
+    }
+
+
+    public List<UserRelationship> getFollowers() {
+        return followers;
+    }
 
     public User(String username, String passwordHash, String name, String email, String biography) {
         this.username = username;
