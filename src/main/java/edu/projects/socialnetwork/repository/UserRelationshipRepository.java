@@ -9,4 +9,6 @@ import java.util.List;
 public interface UserRelationshipRepository extends JpaRepository<UserRelationship, Long> {
 
     List<UserRelationship> findAllByFollowee(User user);
+
+    List<UserRelationship> findAllByFollower(User user);
 }

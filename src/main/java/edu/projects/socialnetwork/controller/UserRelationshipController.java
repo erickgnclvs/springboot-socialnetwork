@@ -29,6 +29,11 @@ public class UserRelationshipController {
         return userRelationshipService.getFollowersByUsername(username);
     }
 
+    @GetMapping("/{username}/following")
+    public List<UserRelationship> getFollowingByUsername(@PathVariable String username) {
+        return userRelationshipService.getFollowingByUsername(username);
+    }
+
     @PostMapping("/{username}/follow")
     public void followUser(@PathVariable String username, @RequestBody RequestFollow requestFollow, UserRelationship userRelationship) {
         userRelationshipService.followUser(username, requestFollow.follower_id(), userRelationship);

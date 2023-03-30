@@ -25,6 +25,11 @@ public class UserRelationshipService {
         return userRelationshipRepository.findAllByFollowee(user);
     }
 
+    public List<UserRelationship> getFollowingByUsername(String username) {
+        User user = userRepository.findUserByUsername(username).orElseThrow();
+        return userRelationshipRepository.findAllByFollower(user);
+    }
+
     @Transactional
     public void followUser(String username, Long followerId, UserRelationship userRelationship) {
         User followee = userRepository.findUserByUsername(username).orElseThrow();
