@@ -15,12 +15,10 @@ import java.util.Set;
 @RequestMapping("/follow")
 public class UserRelationshipController {
 
-    private final UserService userService;
     private final UserRelationshipService userRelationshipService;
 
     @Autowired
-    public UserRelationshipController(UserService userService, UserRelationshipService userRelationshipService) {
-        this.userService = userService;
+    public UserRelationshipController(UserRelationshipService userRelationshipService) {
         this.userRelationshipService = userRelationshipService;
     }
 
