@@ -6,54 +6,113 @@
 
 <!-- Bootstrap layout -->
 <div class="container mt-3">
-  <div class="row">
-    <div class="col-md-3">
+    <div class="row">
+        <div class="col-md-3">
 
-      <!-- User information -->
-      <div th:replace="~{layout :: userinfo}"></div>
+            <!-- User information -->
+            <div th:replace="~{layout :: userinfo}"></div>
 
-      <!-- Bootstrap layout -->
-    </div>
-    <div class="col-md-9">
-
-      <!-- Make a new post form -->
-      <div th:replace="~{layout :: newpost}"></div>
-
-      <!-- For each post in posts -->
-      <div th:each="post : ${posts}" class="post card mt-3">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-auto pr-0">
-              <img src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt="Profile Picture" width="50"
-                   class="tweet-img">
-            </div>
-            <div class="col">
-              <div class="tweet-content">
-                <h5 th:text="${post.user.username}" class="card-title">Username</h5>
-                <p th:text="${post.content}" class="card-text">This is a post</p>
-
-                <!-- Edit this part to edit or delete posts -->
-                <form class="likes" name="like-form" enctype="application/json"
-                      th:action="@{/likes/posts/{postId}(postId=${post.id})}" th:method="post">
-                  <input type="hidden" name="user_id" value="152">
-                  <input type="hidden" name="post_id" th:value="${post.id}">
-
-                  <button onclick="submitLikeForm(event, this.form)" type="submit"
-                          class="btn btn-outline-primary like-button">Like
-                  </button>
-                  <span class="like-count" th:id="'like-count-' + ${post.id}"
-                        th:text="${#lists.size(post.likes)}">100</span>
-                </form>
-                <!------------------------------------------------->
-
-              </div>
-            </div>
-          </div>
+            <!-- Bootstrap layout -->
         </div>
-        <!-- Repeat this block for each tweet -->
+        <div class="col-md-9">
 
-      </div>
+            <!-- Make a new post form -->
+            <div th:replace="~{layout :: newpost}"></div>
+
+            <!-- For each post in posts -->
+            <div th:each="post : ${posts}" class="post card mt-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto pr-0">
+                            <img src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt="Profile Picture" width="50"
+                                 class="profile-img">
+                        </div>
+                        <div class="col">
+                            <div class="post-content">
+                                <h5 th:text="${post.user.username}" class="card-title">Username</h5>
+                                <p th:text="${post.content}" class="card-text">This is a post</p>
+
+                                <!-- Edit this part to edit or delete posts -->
+                                <form class="likes" name="like-form" enctype="application/json"
+                                      th:action="@{/likes/posts/{postId}(postId=${post.id})}" th:method="post">
+                                    <input type="hidden" name="user_id" value="152">
+                                    <input type="hidden" name="post_id" th:value="${post.id}">
+
+                                    <button onclick="submitLikeForm(event, this.form)" type="submit"
+                                            class="btn btn-outline-primary like-button">Like
+                                    </button>
+                                    <span class="like-count" th:id="'like-count-' + ${post.id}"
+                                          th:text="${#lists.size(post.likes)}">100</span>
+                                </form>
+                                <!------------------------------------------------->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat this block for each tweet -->
+
+            </div>
+        </div>
     </div>
-  </div>
-  </body>
-  </html>
+</div> <!-- I added a closing tag because the IDE told me to (?) -->
+</body>
+<script th:inline="javascript">
+    function submitLikeForm(event, form) {
+    event.preventDefault(); // prevent default form submission behavior
+
+    const data = {
+    post_id: form.querySelector('input[name="post_id"]').value,
+    user_id: form.querySelector('input[name="user_id"]').value,
+    };
+
+    // make AJAX request to the server
+    fetch(form.action, {
+    method: form.method,
+    headers: {
+    'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+    })
+    .then(response => {
+    if (response.ok) {
+    // update like count in the DOM
+    const likeCount = form.closest('.post').querySelector('.like-count');
+    const newCount = parseInt(likeCount.textContent) + 1;
+    likeCount.textContent = newCount;
+
+    }
+    })
+    .catch(error => console.error(error));
+    }
+
+    function submitPostForm(event, form) {
+    event.preventDefault(); // prevent default form submission behavior
+
+    const data = {
+    content: form.querySelector('textarea[name="content"]').value,
+    userId: form.querySelector('input[name="userId"]').value,
+    };
+
+    // make AJAX request to the server
+    fetch(form.action, {
+    method: form.method,
+    headers: {
+    'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+    })
+    .then(response => {
+    if (response.ok) {
+
+    // do something
+    location.reload();
+
+    }
+    })
+    .catch(error => console.error(error));
+    }
+
+
+</script>
+</html>
