@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -38,7 +39,7 @@ public class PostService {
 
     public List<Post> getPostsByUsername(String username) {
         User user = userService.getUserByUsername(username);
-        Optional<List<Post>> list = postRepository.findAllByUser(user);
+        Optional<List<Post>> list = postRepository.findAllByUser(Sort.by(Sort.Direction.DESC, "createdAt"), user);
         if (list.isEmpty()) throw new IllegalStateException("no posts for this user");
         return list.get();
     }
