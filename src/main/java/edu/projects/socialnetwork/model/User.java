@@ -68,6 +68,10 @@ public class User {
         this.isActive = true;
     }
 
+    public User(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "User{" +

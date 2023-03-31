@@ -1,6 +1,7 @@
 package edu.projects.socialnetwork.controller;
 
 import edu.projects.socialnetwork.model.Post;
+import edu.projects.socialnetwork.record.RequestPost;
 import edu.projects.socialnetwork.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +35,8 @@ public class PostController {
     }
 
     @PostMapping("/new")
-    public void createPost(@RequestBody Post post) {
-        postService.createPost(post);
+    public void createPost(@RequestBody RequestPost requestPost, Post post) {
+        postService.createPost(requestPost, post);
     }
 
     @PutMapping("post/{id}")

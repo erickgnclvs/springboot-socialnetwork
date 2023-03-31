@@ -28,7 +28,7 @@
                         <form class="likes" name="like-form" enctype="application/json" th:action="@{/likes/posts/{postId}(postId=${post.id})}" th:method="post">
                             <input type="hidden" name="user_id" value="152">
                             <input type="hidden" name="post_id" th:value="${post.id}">
-                            <button onclick="submitForm(event, this.form)" type="submit" class="btn btn-outline-primary like-button">Like</button>
+                            <button onclick="submitLikeForm(event, this.form)" type="submit" class="btn btn-outline-primary like-button">Like</button>
                             <span class="like-count" th:id="'like-count-' + ${post.id}" th:text="${#lists.size(post.likes)}">100</span>
                         </form>
                     </div>

@@ -2,11 +2,13 @@ package edu.projects.socialnetwork.service;
 
 import edu.projects.socialnetwork.model.Post;
 import edu.projects.socialnetwork.model.User;
+import edu.projects.socialnetwork.record.RequestPost;
 import edu.projects.socialnetwork.repository.PostRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +42,11 @@ public class PostService {
         return list.get();
     }
 
-    public void createPost(Post post) {
+    @Transactional
+    public void createPost(RequestPost requestPost, Post post) {
+        post.setCreatedAt(LocalDateTime.now());
+        post.setContent(requestPost.content());
+        post.setUser(userService.getUserById(requestPost.userId()));
         postRepository.save(post);
     }
 

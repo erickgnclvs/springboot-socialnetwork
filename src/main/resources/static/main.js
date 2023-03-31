@@ -1,4 +1,4 @@
-function submitForm(event, form) {
+function submitLikeForm(event, form) {
     event.preventDefault(); // prevent default form submission behavior
 
     const data = {
