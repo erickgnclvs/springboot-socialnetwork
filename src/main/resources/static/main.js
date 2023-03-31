@@ -25,3 +25,30 @@ function submitLikeForm(event, form) {
     })
     .catch(error => console.error(error));
 }
+
+function submitPostForm(event, form) {
+    event.preventDefault(); // prevent default form submission behavior
+
+    const data = {
+        content: form.querySelector('textarea[name="content"]').value,
+        userId: form.querySelector('input[name="userId"]').value,
+    };
+
+    // make AJAX request to the server
+    fetch(form.action, {
+        method: form.method,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (response.ok) {
+
+            // do something
+            location.reload();
+
+        }
+    })
+    .catch(error => console.error(error));
+}

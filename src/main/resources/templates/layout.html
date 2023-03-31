@@ -64,11 +64,12 @@
 <!-- Make a new post form -->
 <div th:fragment="newpost" class="card mt-3">
     <div class="card-body">
-        <form>
+        <form enctype="application/json" th:action="@{/posts/new}" th:method="post">
             <div class="form-group">
-                <textarea class="form-control" rows="3" placeholder="What's on your mind?"></textarea>
+                <textarea name="content" class="form-control" rows="3" placeholder="What's on your mind?"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Post</button>
+            <input type="hidden" name="userId" value="1">
+            <button onclick="submitPostForm(event, this.form)" type="submit" class="btn btn-primary">Post</button>
         </form>
     </div>
 </div>

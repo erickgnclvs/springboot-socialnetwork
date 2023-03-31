@@ -6,6 +6,7 @@ import edu.projects.socialnetwork.record.RequestPost;
 import edu.projects.socialnetwork.repository.PostRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -26,7 +27,7 @@ public class PostService {
 
 
     public List<Post> getPosts() {
-        return postRepository.findAll();
+        return postRepository.findAllByOrderByCreatedAtDesc();
     }
 
     public Post getPostById(Long id) {
