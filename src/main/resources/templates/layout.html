@@ -5,6 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Social Network</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     </head>
     <body>
@@ -31,18 +32,39 @@
     </nav>
 </div>
 
-<!-- Sidebar -->
-<div th:fragment="sidebar" class="col-md-4">
-    <div class="card mt-3">
-        <div class="card-body">
-            <h5 class="card-title">Trending</h5>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">#Bootstrap</li>
-                <li class="list-group-item">#WebDevelopment</li>
-                <li class="list-group-item">#Coding</li>
-                <li class="list-group-item">#JavaScript</li>
-                <li class="list-group-item">#HTML</li>
-            </ul>
+<!-- User information -->
+<div th:fragment="userinfo" class="card">
+    <img src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt="Profile Picture" class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">Username</h5>
+        <p class="card-text">this is a biography</p>
+        <div class="followers">
+            <a href="#" class="card-link">Followers</a>
+            <span class="count">1000</span>
         </div>
+        <div class="following">
+            <a href="#" class="card-link">Following</a>
+            <span class="count">500</span>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><a href="#">Home</a></li>
+        <li class="list-group-item"><a href="#">Notifications</a></li>
+        <li class="list-group-item"><a href="#">Messages</a></li>
+        <li class="list-group-item"><a href="#">Profile</a></li>
+        <li class="list-group-item"><a href="#">Settings</a></li>
+    </ul>
+</div>
+
+
+<!-- Make a new post form -->
+<div th:fragment="newpost" class="card mt-3">
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <textarea class="form-control" rows="3" placeholder="What's on your mind?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Post</button>
+        </form>
     </div>
 </div>

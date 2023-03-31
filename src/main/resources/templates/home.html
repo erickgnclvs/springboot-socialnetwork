@@ -1,53 +1,47 @@
 <!-- Head-->
 <head th:replace="~{layout :: head}">...</head>
 
-<!-- Navigation bar -->
+<!-- Navbar -->
 <div th:replace="~{layout :: navbar}"></div>
 
-<!-- Main content area -->
+<!-- Bootstrap layout -->
 <div class="container mt-3">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-3">
 
-            <!-- New post form -->
-            <form action="/new">
-                <div class="form-group">
-                    <label for="postText">New Post</label>
-                    <textarea class="form-control" id="postText" rows="3" name="content"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Post</button>
-            </form>
+            <!-- User information -->
+            <div th:replace="~{layout :: userinfo}"></div>
 
-            <!-- Recent posts -->
-            <div class="mt-3">
-                <h3>Recent Posts</h3>
+        <!-- Bootstrap layout -->
+        </div>
+        <div class="col-md-9">
 
-                <!-- For each post in posts -->
-                <div th:each="post : ${posts}" class="card mt-3">
-                    <div class="card-body">
-                        <p th:text="${post.content}" class="card-text"></p>
-                        <form name="like-form" enctype="application/json" th:action="@{/likes/posts/{postId}(postId=${post.id})}" th:method="post">
+            <!-- Make a new post form -->
+            <div th:replace="~{layout :: newpost}"></div>
 
-                            <!-- TODO: change the user_id value to session.user_id -->
-
+            <!-- For each post in posts -->
+            <div th:each="post : ${posts}" class="card mt-3">
+                <div class="card-body">
+                    <div class="tweet-content">
+                        <h5 th:text="${post.user.username}" class="card-title">Username</h5>
+                        <p th:text="${post.content}" class="card-text">This is a post</p>
+                        <form class="likes" name="like-form" enctype="application/json" th:action="@{/likes/posts/{postId}(postId=${post.id})}" th:method="post">
                             <input type="hidden" name="user_id" value="152">
                             <input type="hidden" name="post_id" th:value="${post.id}">
-                            <button onclick="submitForm(event, this.form)" type="submit" class="card-link btn btn-link">Like</button>
-                            <p th:id="'like-count-' + ${post.id}" th:text="${#lists.size(post.likes)}"/>
+                            <button onclick="submitForm(event, this.form)" type="submit" class="btn btn-outline-primary like-button">Like</button>
+                            <span class="count" th:id="'like-count-' + ${post.id}" th:text="${#lists.size(post.likes)}">100</span>
                         </form>
                     </div>
                 </div>
-
             </div>
+            <!-- Repeat this block for each tweet -->
+
         </div>
-
-        <!-- Sidebar -->
-        <div th:replace="~{layout :: sidebar}"></div>
-
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script th:inline="javascript">
     function submitForm(event, form) {
     event.preventDefault(); // prevent default form submission behavior
@@ -74,3 +68,5 @@
     .catch(error => console.error(error));
 }
 </script>
+</body>
+</html>
