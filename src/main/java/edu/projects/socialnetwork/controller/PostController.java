@@ -3,7 +3,6 @@ package edu.projects.socialnetwork.controller;
 import edu.projects.socialnetwork.model.Post;
 import edu.projects.socialnetwork.record.RequestPost;
 import edu.projects.socialnetwork.service.PostService;
-import jakarta.persistence.OrderBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

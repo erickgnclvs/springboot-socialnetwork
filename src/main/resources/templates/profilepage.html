@@ -1,0 +1,59 @@
+<!-- Head-->
+<head th:replace="~{layout :: head}">...</head>
+
+<!-- Navbar -->
+<div th:replace="~{layout :: navbar}"></div>
+
+<!-- Bootstrap layout -->
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-3">
+
+      <!-- User information -->
+      <div th:replace="~{layout :: userinfo}"></div>
+
+      <!-- Bootstrap layout -->
+    </div>
+    <div class="col-md-9">
+
+      <!-- Make a new post form -->
+      <div th:replace="~{layout :: newpost}"></div>
+
+      <!-- For each post in posts -->
+      <div th:each="post : ${posts}" class="post card mt-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-auto pr-0">
+              <img src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg" alt="Profile Picture" width="50"
+                   class="tweet-img">
+            </div>
+            <div class="col">
+              <div class="tweet-content">
+                <h5 th:text="${post.user.username}" class="card-title">Username</h5>
+                <p th:text="${post.content}" class="card-text">This is a post</p>
+
+                <!-- Edit this part to edit or delete posts -->
+                <form class="likes" name="like-form" enctype="application/json"
+                      th:action="@{/likes/posts/{postId}(postId=${post.id})}" th:method="post">
+                  <input type="hidden" name="user_id" value="152">
+                  <input type="hidden" name="post_id" th:value="${post.id}">
+
+                  <button onclick="submitLikeForm(event, this.form)" type="submit"
+                          class="btn btn-outline-primary like-button">Like
+                  </button>
+                  <span class="like-count" th:id="'like-count-' + ${post.id}"
+                        th:text="${#lists.size(post.likes)}">100</span>
+                </form>
+                <!------------------------------------------------->
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat this block for each tweet -->
+
+      </div>
+    </div>
+  </div>
+  </body>
+  </html>
