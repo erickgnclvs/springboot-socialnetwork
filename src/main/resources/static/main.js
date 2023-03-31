@@ -17,6 +17,9 @@ function submitForm(event, form) {
     .then(response => {
         if (response.ok) {
             // update like count in the DOM
+            const likeCount = form.closest('.post').querySelector('.like-count');
+            const newCount = parseInt(likeCount.textContent) + 1;
+            likeCount.textContent = newCount;
 
         }
     })

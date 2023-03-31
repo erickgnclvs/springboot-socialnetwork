@@ -20,7 +20,7 @@
             <div th:replace="~{layout :: newpost}"></div>
 
             <!-- For each post in posts -->
-            <div th:each="post : ${posts}" class="card mt-3">
+            <div th:each="post : ${posts}" class="post card mt-3">
                 <div class="card-body">
                     <div class="tweet-content">
                         <h5 th:text="${post.user.username}" class="card-title">Username</h5>
@@ -29,7 +29,7 @@
                             <input type="hidden" name="user_id" value="152">
                             <input type="hidden" name="post_id" th:value="${post.id}">
                             <button onclick="submitForm(event, this.form)" type="submit" class="btn btn-outline-primary like-button">Like</button>
-                            <span class="count" th:id="'like-count-' + ${post.id}" th:text="${#lists.size(post.likes)}">100</span>
+                            <span class="like-count" th:id="'like-count-' + ${post.id}" th:text="${#lists.size(post.likes)}">100</span>
                         </form>
                     </div>
                 </div>
@@ -39,9 +39,5 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" th:inline="javascript" th:src="@{main.js}"></script>
 </body>
 </html>
