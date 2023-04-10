@@ -25,6 +25,7 @@ public class UserRelationshipController {
     @GetMapping("/{username}/followers")
     public List<UserRelationship> getFollowersByUsername(@PathVariable String username) {
         return userRelationshipService.getFollowersByUsername(username);
+        // TODO: make this method be accesses by /username/followers and return a thymeleaf template
     }
 
     @GetMapping("/{username}/following")

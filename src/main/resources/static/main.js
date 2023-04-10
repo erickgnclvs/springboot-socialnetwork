@@ -52,3 +52,6 @@ function submitPostForm(event, form) {
     })
     .catch(error => console.error(error));
 }
+
+
+// TODO: Fix htmls to use this js instead of inline
